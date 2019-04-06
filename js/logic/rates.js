@@ -1,5 +1,5 @@
 function getRatesList(){
-    fetch('http://localhost:3000/rates/getRates', {
+    fetch('http://62.138.16.114:3000/rates/getRates', {
         method: 'get',
         headers: {
             'content-type': 'application/x-www-form-urlencoded',
