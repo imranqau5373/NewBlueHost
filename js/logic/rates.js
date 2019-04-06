@@ -7,12 +7,9 @@ function getRatesList(){
         },
     })
     .then(function(response) {
-        debugger;
         return response.json();
     })
     .then(function(myJson) {
-        debugger;
-        console.log(myJson);
         drawTable(myJson.rates)
     });
 }
