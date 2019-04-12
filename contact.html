@@ -41,14 +41,14 @@
                     <li><a href="#"><i class="fa fa-rss"></i></a></li>
                 </ul>
                 <div class="menu-topbar--contact clearfix">
-                    <ul class="nav navbar-nav">
-                        <li><a href="tel:+4440000000"><i class="fa fa-phone"></i>+444 000 0000</a></li>
-                        <li class="hidden-xs"><a
-                                href="http://themelooks.us/cdn-cgi/l/email-protection#7a1f021b170a161f3a1f021b170a161f54191517"><i
-                                    class="fa fa-envelope"></i><span class="__cf_email__"
-                                    data-cfemail="d7b2afb6baa7bbb297b2afb6baa7bbb2f9b4b8ba">[email&#160;protected]</span></a>
-                        </li>
-                    </ul>
+                        <ul class="nav navbar-nav">
+                                <li><a href="tel:+4440000000"><i class="fa fa-phone"></i>+33642151855</a></li>
+                                <li class="hidden-xs"><a
+                                        href="#"><i
+                                            class="fa fa-envelope"></i><span class="__cf_email__"
+                                            >noc@wholesalevoipprovider.com</span></a>
+                                </li>
+                            </ul>
                 </div>
                 <div class="menu-topbar--btn-group">
                     <ul class="clearfix">
@@ -87,6 +87,7 @@
                                             </ul>
                                 </li>
                                 <li  class="active"><a href="contact.html">Contact</a></li>
+                                <li><a href="about.html">About Us</a></li>
                             </ul>
                             <ul class="secondary-menu-links nav navbar-nav navbar-right hidden-xs hidden-sm">
                                 <li><a href="http://62.138.16.114:3000/users/register" class="btn"><span>Try It Free</span></a></li>
@@ -118,44 +119,40 @@
                     <div class="contact-address">
                         <h2>Contact Address</h2>
                         <address>
-                            <p><i class="fa fa-home"></i> House #14, Road #09, Sector #12, Dhaka-1203, Bangladesh.</p>
-                            <p><i class="fa fa-envelope"></i> <a href="http://themelooks.us/cdn-cgi/l/email-protection"
-                                    class="__cf_email__"
-                                    data-cfemail="eb989e9b9b84999fab8e938a869b878ec5888486">[email&#160;protected]</a>
+                            <p><i class="fa fa-home"></i> 
+                                Adresse: Paris Area 75018  France</p>
+                            <p><i class="fa fa-envelope"></i> 
+                                noc@wholesalevoipprovider.com
                             </p>
-                            <p><i class="fa fa-phone"></i> +000 000 000 000</p>
-                            <p><i class="fa fa-fax"></i> +1-212-9876543</p>
+                            <p><i class="fa fa-phone"></i>+33642151855</p>
+                            <p><i class="fa fa-fax"></i>+33642151855</p>
                         </address>
                         <div class="contact-social-links">
                             <ul>
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                <li><a href="#"><i class="fa fa-feed"></i></a></li>
+                                <li><a href="https://www.facebook.com/wholesalevoipprovidercom" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="https://www.linkedin.com/company/wholesalevoipprovider" target="_blank"><i class="fa fa-linkedin"></i></a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-6 contact-form">
-                    <form action="http://themelooks.us/demo/voip/html/preview/sendmail.php" method="post"
+                    <form action="http://localhost:3000/rates/sendEmail" method="post"
                         id="contactForm">
                         <div class="contact-form-status"></div>
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="form-group"> <input type="text" name="contactName" class="form-control"
-                                        placeholder="Name"> </div>
+                                <div class="form-group"> <input type="text" id="emailName" name="contactName" class="form-control"
+                                        placeholder="Name" required> </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group"> <input type="email" name="contactEmail" class="form-control"
-                                        placeholder="Email"> </div>
+                                        placeholder="Email" id="emailAddress" required> </div>
                             </div>
                         </div>
                         <div class="form-group"> <input type="text" name="contactSubject" class="form-control"
-                                placeholder="Subject"> </div>
-                        <div class="form-group"> <textarea name="contactMessage" class="form-control" cols="30" rows="9"
-                                placeholder="Message"></textarea> </div><button type="submit"
+                                placeholder="Subject" id="emailSubject" required> </div>
+                        <div class="form-group"> <textarea name="contactMessage" id='emailMessage' class="form-control" cols="30" rows="9"
+                                placeholder="Message"></textarea> </div><button type="submit" 
                             class="btn submit-button">Send</button>
                     </form>
                 </div>
@@ -182,6 +179,8 @@
     <!-- <script src="js/custom-color-switcher.js"></script> -->
     <script src="js/retina.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/sendemail.js"></script>
+
 </body>
 <!-- Mirrored from themelooks.us/demo/voip/html/preview/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 17 Mar 2019 17:55:15 GMT -->
 

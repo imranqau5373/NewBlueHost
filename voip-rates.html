@@ -16,6 +16,8 @@
         <link href="css/jquery-ui.min.css" rel="stylesheet">
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/owl.carousel.css" rel="stylesheet">
+        <link rel="stylesheet" media="all" href="https://s3.amazonaws.com/dynatable-docs-assets/css/jquery.dynatable.css">
+
         <link href="css/dataTables.bootstrap.min.css" rel="stylesheet">
         <link href="js/vpt-plugin/vpt.css" rel="stylesheet">
         <link href="style.css" rel="stylesheet">
@@ -40,14 +42,14 @@
                     <li><a href="#"><i class="fa fa-rss"></i></a></li>
                 </ul>
                 <div class="menu-topbar--contact clearfix">
-                    <ul class="nav navbar-nav">
-                        <li><a href="tel:+4440000000"><i class="fa fa-phone"></i>+444 000 0000</a></li>
-                        <li class="hidden-xs"><a
-                                href="http://themelooks.us/cdn-cgi/l/email-protection#7a1f021b170a161f3a1f021b170a161f54191517"><i
-                                    class="fa fa-envelope"></i><span class="__cf_email__"
-                                    data-cfemail="d7b2afb6baa7bbb297b2afb6baa7bbb2f9b4b8ba">[email&#160;protected]</span></a>
-                        </li>
-                    </ul>
+                        <ul class="nav navbar-nav">
+                                <li><a href="tel:+4440000000"><i class="fa fa-phone"></i>+33642151855</a></li>
+                                <li class="hidden-xs"><a
+                                        href="#"><i
+                                            class="fa fa-envelope"></i><span class="__cf_email__"
+                                            >noc@wholesalevoipprovider.com</span></a>
+                                </li>
+                        </ul>
                 </div>
                 <div class="menu-topbar--btn-group">
                     <ul class="clearfix">
@@ -86,6 +88,7 @@
                                     </ul>
                                 </li>
                                 <li><a href="contact.html">Contact</a></li>
+                                <li><a href="about.html">About Us</a></li>
                             </ul>
                             <ul class="secondary-menu-links nav navbar-nav navbar-right hidden-xs hidden-sm">
                                 <li><a href="http://62.138.16.114:3000/users/register" class="btn"><span>Try It Free</span></a></li>
@@ -160,13 +163,26 @@
 <script src="js/retina.min.js"></script>
 <script src="js/main.js"></script>
 <script src="js/logic/rates.js"></script>
+<script src="js/callrates-2.js"></script>
+<script type="text/javascript" src="https://s3.amazonaws.com/dynatable-docs-assets/js/jquery.dynatable.js"></script>
+
 
 
 </body>
 <!-- Mirrored from themelooks.us/demo/voip/html/preview/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 17 Mar 2019 17:55:15 GMT -->
 <script type="text/javascript">
     $(document).ready(function() {
-        getRatesList();
+        //getRatesList();
+        debugger;
+        console.log(rateslist)
+        $('#callingRatesTable').dynatable({
+		  dataset: {
+			records: rateslist,
+			perPageDefault: 10,
+			perPageOptions: [10, 20,50,100]
+		  },
+		  
+		});
 
     });
 
