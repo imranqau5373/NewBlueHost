@@ -3,6 +3,9 @@
 <!-- Mirrored from themelooks.us/demo/voip/html/preview/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 17 Mar 2019 17:53:41 GMT -->
 
 <head>
+    <style>
+      
+    </style>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -16,13 +19,14 @@
         <link href="css/jquery-ui.min.css" rel="stylesheet">
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/owl.carousel.css" rel="stylesheet">
-        <link rel="stylesheet" media="all" href="https://s3.amazonaws.com/dynatable-docs-assets/css/jquery.dynatable.css">
 
         <link href="css/dataTables.bootstrap.min.css" rel="stylesheet">
         <link href="js/vpt-plugin/vpt.css" rel="stylesheet">
         <link href="style.css" rel="stylesheet">
         <link href="css/responsive-style.css" rel="stylesheet">
         <link href="css/colors/theme-color-1.css" rel="stylesheet" id="changeColorScheme">
+        <link rel="stylesheet" media="all" href="css/jquery.dynatable.css">
+
         <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script><![endif]-->
 </head>
 <body>
@@ -125,12 +129,10 @@
                             <div class="rates--table">
                                 <table id="callingRatesTable" class="table table-striped table-bordered RatesDatatable">
                                     <thead>
-                                            <tr>
-                                                    <th>Destination</th>
-                                                    <th>Prefix</th>
-                                                    <th>Wholesale EUR</th>
-                                                    <th>Wholesale USD</th>
-                                            </tr>
+                                        <th style="background-color:white">Destination</th>
+                                        <th style="background-color:white">Prefix</th>
+                                        <th style="background-color:white">Wholesale EUR</th>
+                                        <th style="background-color:white">Wholesale USD</th>
                                     </thead>
                                     <tbody>
 
@@ -163,8 +165,8 @@
 <script src="js/retina.min.js"></script>
 <script src="js/main.js"></script>
 <script src="js/logic/rates.js"></script>
-<script src="js/callrates-2.js"></script>
-<script type="text/javascript" src="https://s3.amazonaws.com/dynatable-docs-assets/js/jquery.dynatable.js"></script>
+<script src="js/logic/dynatable.js"></script>
+<script src="js/callrates.js"></script>
 
 
 
@@ -172,17 +174,16 @@
 <!-- Mirrored from themelooks.us/demo/voip/html/preview/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 17 Mar 2019 17:55:15 GMT -->
 <script type="text/javascript">
     $(document).ready(function() {
-        //getRatesList();
-        debugger;
-        console.log(rateslist)
         $('#callingRatesTable').dynatable({
 		  dataset: {
-			records: rateslist,
+			records: callRates,
 			perPageDefault: 10,
 			perPageOptions: [10, 20,50,100]
 		  },
 		  
-		});
+        });
+        // $(".dynatable-page-link").css("color","black");
+
 
     });
 
