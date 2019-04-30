@@ -4,6 +4,11 @@
 
 <head>
     <style>
+        .btn{
+            color: #fff;
+            background-color: #6aaf08;
+            box-shadow: none;
+        }
 
     </style>
     <meta charset="utf-8">
@@ -116,18 +121,25 @@
             </div>
         </div>
     </div>
-    <br>
-    <div class="container">
-    <ul class="nav nav-pills">
-        <li  class="setclass active" id="wholesaleMenu"><a href="#testnew" style="color:black" onclick="showTable('wholesale')">Wholesale Rates</a></li>
-        <li class="setclass" id="platinumMenu"><a href="#testra" style="color:black" onclick="showTable('platinum')">Platinum Rates</a></li>
-        <li class="setclass" id="goldMenu"><a href="#wholesaleRates" style="color:black" onclick="showTable('gold')">Gold Rates</a></li>
-      </ul>
-    </div>
+
+    <!-- <div class="rates--tab-nav RatesTabNav">
+        <ul>
+            <li class="active"><a href="#callingRatesTab" class="btn" data-toggle="tab">Calling Rates</a></li>
+            <li><a href="#smsRatesTab" class="btn" data-toggle="tab">SMS Rates</a></li>
+            <li><a href="#freeDaysRatesTab" class="btn" data-toggle="tab">Out of freedays?</a></li>
+            <li><a href="#mobileTopUpRatesTab" class="btn" data-toggle="tab">Mobile Top Up Rates</a></li>
+        </ul>
+    </div> -->
       
       <div id="rates" style="display:block;">
         <div class="container">
-
+                <div class="rates--tab-nav RatesTabNav">
+                        <ul>
+                            <li  class="setclass active" id="wholesaleMenu"><a class="btn" href="#testnew" onclick="showTable('wholesale')">Wholesale Rates</a></li>
+                            <li class="setclass " id="platinumMenu"><a class="btn" href="#testra" onclick="showTable('platinum')">Platinum Rates</a></li>
+                            <li class="setclass " id="goldMenu"><a  class="btn" href="#wholesaleRates" onclick="showTable('gold')">Gold Rates</a></li>
+                          </ul>
+                </div>
             <div class="rates--select-menu RatesSelectMenu">
 
             </div>
@@ -156,11 +168,17 @@
 
     <div id="ratesPlatinum" style="display:none;">
         <div class="container">
-
+                <div class="rates--tab-nav RatesTabNav">
+                        <ul>
+                            <li  class="setclass " id="wholesaleMenu"><a class="btn" href="#testnew" onclick="showTable('wholesale')">Wholesale Rates</a></li>
+                            <li class="setclass active" id="platinumMenu"><a class="btn" href="#testra" onclick="showTable('platinum')">Platinum Rates</a></li>
+                            <li class="setclass " id="goldMenu"><a  class="btn" href="#wholesaleRates" onclick="showTable('gold')">Gold Rates</a></li>
+                          </ul>
+                </div>
             <div class="rates--select-menu RatesSelectMenu">
 
             </div>
-            <div class="rates--tab">
+            <div class="rates--tab">    
                 <div class="tab-content">
                     <div class="tab-pane fade in active" id="callingRatesTab">
                         <div class="rates--table">
@@ -186,9 +204,13 @@
     <div id="goldRates" style="display:none;">
         <div class="container">
 
-            <div class="rates--select-menu RatesSelectMenu">
-
-            </div>
+                <div class="rates--tab-nav RatesTabNav">
+                        <ul>
+                            <li  class="setclass " id="wholesaleMenu"><a class="btn" href="#testnew" onclick="showTable('wholesale')">Wholesale Rates</a></li>
+                            <li class="setclass " id="platinumMenu"><a class="btn" href="#testra" onclick="showTable('platinum')">Platinum Rates</a></li>
+                            <li class="setclass active" id="goldMenu"><a  class="btn" href="#wholesaleRates" onclick="showTable('gold')">Gold Rates</a></li>
+                          </ul>
+                </div>
             <div class="rates--tab">
                 <div class="tab-content">
                     <div class="tab-pane fade in active" id="callingRatesTab">
@@ -276,30 +298,20 @@
     });
 
     function showTable(rates){
-        $( ".setclass" ).removeClass( "active" )
-
         if(rates == 'wholesale'){
             $("#rates").css("display", "block");
             $("#ratesPlatinum").css("display", "none");
             $("#goldRates").css("display", "none");
-            $( "#wholesaleMenu" ).addClass( "active" );
-
-
         }
         else if(rates == 'platinum'){
             $("#rates").css("display", "none");
             $("#ratesPlatinum").css("display", "block");
             $("#goldRates").css("display", "none");
-            $( "#platinumMenu" ).addClass( "active" );
-
-
         }
         else{
             $("#rates").css("display", "none");
             $("#ratesPlatinum").css("display", "none");
             $("#goldRates").css("display", "block");
-            $( "#goldMenu" ).addClass( "active" );
-
         }
     }
 
