@@ -31,7 +31,7 @@
     <link href="css/responsive-style.css" rel="stylesheet">
     <link href="css/colors/theme-color-1.css" rel="stylesheet" id="changeColorScheme">
     <link rel="stylesheet" media="all" href="css/jquery.dynatable.css">
-
+ 
     <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script><![endif]-->
 </head>
 
@@ -138,7 +138,7 @@
                             <li  class="setclass active" id="wholesaleMenu"><a class="btn" href="#testnew" onclick="showTable('wholesale')">Wholesale Rates</a></li>
                             <li class="setclass " id="platinumMenu"><a class="btn" href="#testra" onclick="showTable('platinum')">Platinum Rates</a></li>
                             <li class="setclass " id="goldMenu"><a  class="btn" href="#wholesaleRates" onclick="showTable('gold')">Gold Rates</a></li>
-                            <li class="" id="downloadWholesaleMenu"><a  class="btn" href="#downloadWholesale" onclick="downloadRates('wholesale')">Download Rates</a></li>
+                            <li class="" id="downloadWholesaleMenu"><a  class="btn" href="#downloadWholesale" onclick="downloadRates()">Download Rates</a></li>
                           </ul>
                 </div>
             <div class="rates--select-menu RatesSelectMenu">
@@ -260,11 +260,11 @@
     <script src="js/logic/dynatable.js"></script>
     <script src="js/callrates.js"></script>
     <script src="js/platinumrates.js"></script>
-
+    <script src="js/logic/filesaver.js"></script>
     <script src="js/goldrates.js"></script>
-
-
-
+    <script src="js/logic/jszip.js"></script>
+    <script src="js/logic/xlsx.core.min.js"></script>
+    <script src="js/logic/jhxlsx.js"></script>
 
 </body>
 <!-- Mirrored from themelooks.us/demo/voip/html/preview/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 17 Mar 2019 17:55:15 GMT -->
@@ -319,19 +319,40 @@
         }
     }
 
-    function downloadRates(download){
-        if(download == "wholesale"){
-            JSONToCSVConvertor(callRates,"Wholesale Rates","WholeSale");
-        }
-        else if(download == "platinum"){
-            JSONToCSVConvertor(platinumrates,"Platinum Rates","Platinum");
-        }
-        else{
-            JSONToCSVConvertor(goldRates,"Gold Rates","Gold");
-        }
+    function downloadRates(){
+        debugger;
+        var wholesaleRates = exportToExcel(callRates,"Wholesale Rates","WholeSale");
+        let getGoldRates = exportToExcel(goldRates,"Gold Rates","Gold");
+        let getPlatinumRates = exportToExcel(platinumrates,"Platinum Rates","Platinum");
+        downloadInZip(wholesaleRates,getGoldRates,getPlatinumRates);
+        
     }
 
-    function JSONToCSVConvertor(JSONData, ReportTitle, ShowLabel) {
+    function downloadInZip(wholesale,gold,platinum)
+        {
+            var rates = {
+                rate1:wholesale,
+                rate2:gold,
+                rate3:platinum 
+            };
+            var optionList = {
+                option1 : {
+                    filename1:'Wholesale Rates.xlsx',
+               },
+               option2 : {
+                    filename1:'Gold Rates.xlsx',
+               },
+               option3 : {
+                    filename1:'Platinum Rates.xlsx',
+               }
+        };
+            var zip = new JSZip();
+            var folder = zip.folder("Rates List");
+            Jhxlsx.export(rates, optionList);
+        }
+
+    function JSONToCSVConvertor(JSONData, ReportTitle, ShowLabel) 
+    {
             //If JSONData is not an object then JSON.parse will parse the JSON string in an Object
             var arrData = typeof JSONData != 'object' ? JSON.parse(JSONData) : JSONData;
 
@@ -383,26 +404,75 @@
             //fileName += ReportTitle.replace(/ /g, "_");
 
             //Initialize file format you want csv or xls
-            var uri = 'data:text/csv;charset=utf-8,' + escape(CSV);
+            // var uri = 'data:text/csv;charset=utf-8,' + escape(CSV);
 
-            // Now the little tricky part.
-            // you can use either>> window.open(uri);
-            // but this will not work in some browsers
-            // or you will not get the correct file extension    
+            // // Now the little tricky part.
+            // // you can use either>> window.open(uri);
+            // // but this will not work in some browsers
+            // // or you will not get the correct file extension    
 
-            //this trick will generate a temp <a /> tag
-            var link = document.createElement("a");
-            link.href = uri;
+            // //this trick will generate a temp <a /> tag
+            // var link = document.createElement("a");
+            // link.href = uri;
 
-            //set the visibility hidden so it will not effect on your web-layout
-            link.style = "visibility:hidden";
-            link.download = ReportTitle + ".csv";
+            // //set the visibility hidden so it will not effect on your web-layout
+            // link.style = "visibility:hidden";
+            // link.download = ReportTitle + ".csv";
+
+            // var zip = new JSZip();
+            // zip.file(ReportTitle + ".csv",CSV);
+
+            // zip.generateAsync({type:"blob"}).then(function (blob) { // 1) generate the zip file
+            //     saveAs(blob, "hello.zip");                          // 2) trigger the download
+            // }, function (err) {
+            //     jQuery("#blob").text(err);
+            // });
 
             //this part will append the anchor tag and remove it after automatic click
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }       
+            // document.body.appendChild(link);
+            // link.click();
+            // document.body.removeChild(link);
+            return CSV;
+        }
+      
+        
+function  exportToExcel(JSONData, ReportTitle, ShowLabel){
+    debugger;
+    var exportData = []
+            //Get properties of the object and add as a first row in excel file.
+            if (JSONData.length > 0) {
+                let rowData = [];
+                var listOfProperties = Object.getOwnPropertyNames(JSONData[0]);
+                for (let k = 0; k < listOfProperties.length; k++) {
+                    let obj = { 'text': '' }
+                    obj.text = listOfProperties[k];
+                    rowData.push(obj);
+                }
+                exportData.push(rowData);
+            }
+            // Get Data from collection and convert into required plugin format.
+            for (let i = 0; i < JSONData.length; i++) {
+                let rowData = [];
+                var listOfProperties = Object.getOwnPropertyNames(JSONData[i]);
+                var resObject = JSONData[i];
+                for (let k = 0; k < listOfProperties.length; k++) {
+                    let obj = { 'text': '' }
+                    obj.text = resObject[listOfProperties[k]];
+                    rowData.push(obj);
+                }
+                exportData.push(rowData);
+            }
+            var options = {
+                fileName: ReportTitle
+            };
+            var tableData = [
+            {
+                "sheetName": "Sheet1",
+                "data": exportData
+            }];
+            return tableData;
+            //Jhxlsx.export(tableData, options);
+}
 
     
 
