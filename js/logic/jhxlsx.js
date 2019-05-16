@@ -171,7 +171,6 @@ var Jhxlsx = {
         return blobData;
     },
     export: function (workbookObj, options) {
-        debugger;
         var zip = new JSZip();
         var folder = zip.folder("Rates List");
         folder.file("Wholesale Rates.xlsx", this.getBlob(workbookObj.rate1, options.option1));
@@ -181,9 +180,8 @@ var Jhxlsx = {
         zip.generateAsync({type:"blob"})
                 .then(function(content) {
                     //see FileSaver.js
-                    saveAs(content, "Ratest List.zip");
+                    saveAs(content, "Wholesale Voip Provider Rates.zip");
         });
-        //saveAs(blobData, "Ratest List.zip");
     },
 }
 
